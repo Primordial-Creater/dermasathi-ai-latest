@@ -1,0 +1,114 @@
+/* ============================================================
+   Toast — Tactile Floating Toast Pill Alert CSS Module
+   Refined for Clinical Luminous design (No AI-tell side borders)
+   ============================================================ */
+
+.toastContainer {
+  position: fixed;
+  bottom: 84px;
+  right: 24px;
+  display: flex;
+  flex-direction: column-reverse;
+  gap: 12px;
+  z-index: 9999;
+  pointer-events: none;
+}
+
+@media (max-width: 640px) {
+  .toastContainer {
+    bottom: 96px;
+    right: 16px;
+    left: 16px;
+    align-items: center;
+  }
+}
+
+.toastPill {
+  pointer-events: auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  background: var(--color-bg-surface);
+  box-shadow: var(--shadow-neu-raised-lg);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-pill);
+  padding: 11px 20px;
+  color: var(--color-text-primary);
+  font-size: 0.88rem;
+  font-weight: 600;
+  max-width: 420px;
+  backdrop-filter: blur(8px);
+}
+
+.toastPillSuccess {
+  border-color: rgba(22, 163, 74, 0.25);
+  background: #f0fdf4;
+}
+
+.toastPillError {
+  border-color: rgba(220, 38, 38, 0.25);
+  background: #fef2f2;
+}
+
+.toastPillInfo {
+  border-color: rgba(2, 132, 199, 0.25);
+  background: #f0f9ff;
+}
+
+.toastPillWarning {
+  border-color: rgba(217, 119, 6, 0.25);
+  background: #fffbeb;
+}
+
+.iconCircle {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.iconSuccess {
+  background: #dcfce7;
+  color: #15803d;
+}
+
+.iconError {
+  background: #fee2e2;
+  color: #b91c1c;
+}
+
+.iconInfo {
+  background: #e0f2fe;
+  color: #0369a1;
+}
+
+.iconWarning {
+  background: #fef3c7;
+  color: #b45309;
+}
+
+.message {
+  flex: 1;
+  line-height: 1.4;
+  color: var(--color-text-primary);
+}
+
+.closeBtn {
+  background: transparent;
+  border: none;
+  color: var(--color-text-muted);
+  cursor: pointer;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  border-radius: 50%;
+  transition: var(--transition-tactile);
+}
+
+.closeBtn:hover {
+  color: var(--color-text-primary);
+  background: var(--color-bg-subtle);
+}

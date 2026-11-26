@@ -1,0 +1,17 @@
+{
+  "Actinic keratoses": 0,
+  "Basal cell carcinoma": 1,
+  "Benign keratosis-like lesions": 2,
+  "Chickenpox": 3,
+  "Cowpox": 4,
+  "Dermatofibroma": 5,
+  "HFMD": 6,
+  "Healthy": 7,
+  "Measles": 8,
+  "Melanocytic nevi": 9,
+  "Melanoma": 10,
+  "Monkeypox": 11,
+  "OTHER_UNSUPPORTED": 12,
+  "Squamous cell carcinoma": 13,
+  "Vascular lesions": 14
+}

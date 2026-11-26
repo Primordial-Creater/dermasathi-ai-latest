@@ -1,0 +1,356 @@
+{
+  "Actinic keratoses": {
+    "severity": "precancerous",
+    "care_level": "prompt_dermatology_review",
+    "summary": "A rough or scaly sun-damaged skin lesion that can require treatment and monitoring.",
+    "medication_guidance": {
+      "type": "clinician_directed",
+      "message": "Do not self-prescribe treatment from an image result. A dermatologist can determine whether lesion-directed or field treatment is appropriate."
+    },
+    "lifestyle": [
+      "Use broad-spectrum sun protection and protective clothing.",
+      "Avoid intentional tanning and prolonged direct sun exposure.",
+      "Arrange a skin examination, especially if the lesion changes, bleeds or becomes painful."
+    ],
+    "ayurveda": {
+      "type": "adjunct_only",
+      "message": "Do not replace dermatology evaluation with Ayurvedic treatment. Discuss any traditional medicine with an appropriate qualified practitioner and clinician."
+    },
+    "red_flags": [
+      "rapid change",
+      "bleeding",
+      "persistent pain",
+      "non-healing area"
+    ]
+  },
+
+  "Basal cell carcinoma": {
+    "severity": "high_risk",
+    "care_level": "urgent_dermatology_review",
+    "summary": "A potentially serious skin cancer that requires professional confirmation and treatment planning.",
+    "medication_guidance": {
+      "type": "no_self_medication",
+      "message": "Do not attempt to self-treat a suspected basal cell carcinoma. Professional diagnosis and treatment planning are required."
+    },
+    "lifestyle": [
+      "Arrange dermatology evaluation promptly.",
+      "Use regular sun protection.",
+      "Do not pick, burn, freeze or chemically treat the lesion yourself."
+    ],
+    "ayurveda": {
+      "type": "adjunct_only",
+      "message": "Ayurveda must not replace cancer diagnosis or treatment. Discuss any traditional medicine with the treating medical team."
+    },
+    "red_flags": [
+      "bleeding",
+      "ulceration",
+      "rapid growth",
+      "persistent non-healing sore"
+    ]
+  },
+
+  "Benign keratosis-like lesions": {
+    "severity": "usually_benign",
+    "care_level": "routine_review_if_needed",
+    "summary": "A lesion pattern that is often benign, although changing or unusual lesions still require clinical assessment.",
+    "medication_guidance": {
+      "type": "usually_none",
+      "message": "Medication is usually not required solely from this image result. A clinician can decide whether removal or another treatment is appropriate."
+    },
+    "lifestyle": [
+      "Avoid scratching or repeatedly irritating the lesion.",
+      "Monitor for meaningful changes in size, shape, colour or bleeding."
+    ],
+    "ayurveda": {
+      "type": "wellness_only",
+      "message": "No disease-specific Ayurvedic medicine should be recommended solely from an image."
+    },
+    "red_flags": [
+      "rapid change",
+      "bleeding",
+      "persistent pain",
+      "marked asymmetry"
+    ]
+  },
+
+  "Chickenpox": {
+    "severity": "infectious",
+    "care_level": "medical_review_when_risk_factors_or_severe_symptoms",
+    "summary": "A contagious viral illness where hydration, symptom control and prevention of complications are important.",
+    "medication_guidance": {
+      "type": "supportive",
+      "message": "Age-appropriate fever or pain relief may be used according to product labeling or clinician advice. Aspirin should not be given to children with chickenpox. Antiviral treatment may be considered by a clinician for people at increased risk."
+    },
+    "lifestyle": [
+      "Stay hydrated.",
+      "Keep nails short and avoid scratching.",
+      "Use gentle skin care to reduce irritation.",
+      "Avoid close contact with people at high risk of complications while contagious."
+    ],
+    "ayurveda": {
+      "type": "adjunct_only",
+      "message": "Ayurvedic products should not replace medical assessment or indicated treatment for chickenpox."
+    },
+    "red_flags": [
+      "difficulty breathing",
+      "confusion",
+      "persistent high fever",
+      "severe vomiting",
+      "rapidly worsening redness or pus"
+    ]
+  },
+
+  "Cowpox": {
+    "severity": "infectious",
+    "care_level": "medical_review",
+    "summary": "A rare zoonotic poxvirus infection requiring clinical assessment rather than image-only treatment.",
+    "medication_guidance": {
+      "type": "clinician_directed",
+      "message": "Do not self-prescribe antimicrobial or antiviral treatment from an image. Clinical assessment is needed."
+    },
+    "lifestyle": [
+      "Avoid touching or opening lesions.",
+      "Wash hands after contact with affected skin.",
+      "Avoid sharing personal items that may contact lesions."
+    ],
+    "ayurveda": {
+      "type": "adjunct_only",
+      "message": "Do not substitute Ayurvedic medicine for evaluation of a suspected zoonotic infection."
+    },
+    "red_flags": [
+      "rapid spread",
+      "eye involvement",
+      "high fever",
+      "severe weakness",
+      "immunocompromise"
+    ]
+  },
+
+  "Dermatofibroma": {
+    "severity": "usually_benign",
+    "care_level": "routine_review_if_changed",
+    "summary": "A usually benign skin nodule that often needs no treatment unless symptomatic or diagnostically uncertain.",
+    "medication_guidance": {
+      "type": "usually_none",
+      "message": "Routine medication is generally not required for an uncomplicated dermatofibroma."
+    },
+    "lifestyle": [
+      "Avoid repeated friction or trauma.",
+      "Monitor for changes in size, colour or symptoms."
+    ],
+    "ayurveda": {
+      "type": "wellness_only",
+      "message": "No disease-specific Ayurvedic medicine is recommended solely from an image."
+    },
+    "red_flags": [
+      "rapid growth",
+      "bleeding",
+      "persistent pain",
+      "major change in appearance"
+    ]
+  },
+
+  "HFMD": {
+    "severity": "usually_self_limited_infectious",
+    "care_level": "supportive_care",
+    "summary": "A usually self-limited viral illness where hydration and symptom control are important.",
+    "medication_guidance": {
+      "type": "supportive",
+      "message": "Age-appropriate fever or pain relief can be considered according to product labeling or clinician advice. Antibiotics do not treat the viral cause. Never give aspirin to children."
+    },
+    "lifestyle": [
+      "Drink enough fluids to prevent dehydration.",
+      "Use cool fluids and soft foods when mouth sores make eating painful.",
+      "Wash hands frequently and avoid close contact while contagious."
+    ],
+    "ayurveda": {
+      "type": "adjunct_only",
+      "message": "Traditional remedies should not replace hydration, symptom management or medical review when complications are suspected."
+    },
+    "red_flags": [
+      "dehydration",
+      "persistent fever",
+      "severe weakness",
+      "neurologic symptoms",
+      "difficulty swallowing fluids"
+    ]
+  },
+
+  "Healthy": {
+    "severity": "no_supported_skin_disease_detected",
+    "care_level": "preventive",
+    "summary": "No supported skin disease was identified by the model.",
+    "medication_guidance": {
+      "type": "none",
+      "message": "No disease-specific medication is indicated from this image result."
+    },
+    "lifestyle": [
+      "Use regular sun protection.",
+      "Use gentle cleansing and moisturisation appropriate to your skin.",
+      "Maintain adequate sleep, hydration and a balanced diet.",
+      "Monitor new or changing lesions."
+    ],
+    "ayurveda": {
+      "type": "wellness_only",
+      "message": "General Ayurvedic wellness practices can be discussed separately, but disease-specific Ayurvedic medication is not indicated from a healthy-image result."
+    },
+    "red_flags": [
+      "new rapidly changing lesion",
+      "persistent bleeding",
+      "non-healing sore"
+    ]
+  },
+
+  "Measles": {
+    "severity": "infectious",
+    "care_level": "prompt_medical_review_and_infection_control",
+    "summary": "A contagious viral illness that requires medical assessment and infection-control precautions.",
+    "medication_guidance": {
+      "type": "clinician_directed_supportive",
+      "message": "Treatment is primarily supportive. Any vitamin A therapy should be provided under clinical guidance. Antibiotics are only appropriate for bacterial complications."
+    },
+    "lifestyle": [
+      "Avoid close contact with others while infectious.",
+      "Rest and maintain hydration.",
+      "Follow local public-health and clinician advice."
+    ],
+    "ayurveda": {
+      "type": "adjunct_only",
+      "message": "Ayurvedic medicine should not replace medical evaluation or infection-control measures."
+    },
+    "red_flags": [
+      "difficulty breathing",
+      "dehydration",
+      "confusion",
+      "severe weakness",
+      "persistent high fever"
+    ]
+  },
+
+  "Melanocytic nevi": {
+    "severity": "usually_benign",
+    "care_level": "monitor",
+    "summary": "A common pigmented lesion that is often benign but should be monitored for meaningful change.",
+    "medication_guidance": {
+      "type": "usually_none",
+      "message": "No medication is indicated solely because a mole appears consistent with a melanocytic nevus."
+    },
+    "lifestyle": [
+      "Monitor for changes in asymmetry, border, colour, size or evolution.",
+      "Use regular sun protection.",
+      "Arrange professional examination when a mole changes or becomes concerning."
+    ],
+    "ayurveda": {
+      "type": "wellness_only",
+      "message": "No disease-specific Ayurvedic medicine is recommended solely from an image."
+    },
+    "red_flags": [
+      "rapid evolution",
+      "new asymmetry",
+      "new bleeding",
+      "major colour change"
+    ]
+  },
+
+  "Melanoma": {
+    "severity": "high_risk",
+    "care_level": "urgent_dermatology_review",
+    "summary": "A potentially serious skin cancer requiring prompt professional confirmation and treatment planning.",
+    "medication_guidance": {
+      "type": "no_self_medication",
+      "message": "Do not self-treat suspected melanoma with OTC, herbal or Ayurvedic medicines. Professional diagnosis and treatment planning are essential."
+    },
+    "lifestyle": [
+      "Arrange prompt dermatology evaluation.",
+      "Avoid unnecessary sun exposure and use broad-spectrum sun protection.",
+      "Do not pick, burn, freeze or chemically treat the lesion yourself."
+    ],
+    "ayurveda": {
+      "type": "adjunct_only",
+      "message": "Ayurvedic medicine must not replace cancer diagnosis or treatment. Discuss any traditional product with the treating medical team."
+    },
+    "red_flags": [
+      "rapid evolution",
+      "bleeding",
+      "new ulceration",
+      "rapid enlargement"
+    ]
+  },
+
+  "Monkeypox": {
+    "severity": "infectious",
+    "care_level": "prompt_medical_review",
+    "summary": "A contagious viral illness for which isolation, lesion care and symptom control are important.",
+    "medication_guidance": {
+      "type": "supportive_and_clinician_directed",
+      "message": "Supportive care and pain control are commonly used. Specific treatment is clinician-directed, particularly for severe disease or people at higher risk."
+    },
+    "lifestyle": [
+      "Avoid skin-to-skin contact while infectious.",
+      "Cover lesions as advised and wash hands frequently.",
+      "Rest, eat adequately and maintain hydration.",
+      "Follow local medical and public-health guidance."
+    ],
+    "ayurveda": {
+      "type": "adjunct_only",
+      "message": "Do not use Ayurvedic medicine as a substitute for infection-control or medical treatment."
+    },
+    "red_flags": [
+      "severe or uncontrolled pain",
+      "eye involvement",
+      "difficulty breathing",
+      "confusion",
+      "immunocompromise"
+    ]
+  },
+
+  "Squamous cell carcinoma": {
+    "severity": "high_risk",
+    "care_level": "urgent_dermatology_review",
+    "summary": "A skin cancer that requires professional confirmation and treatment planning.",
+    "medication_guidance": {
+      "type": "no_self_medication",
+      "message": "Do not self-treat suspected squamous cell carcinoma. Dermatology assessment and appropriate treatment are required."
+    },
+    "lifestyle": [
+      "Arrange prompt dermatology evaluation.",
+      "Use regular sun protection.",
+      "Do not repeatedly scratch, burn or chemically treat the lesion."
+    ],
+    "ayurveda": {
+      "type": "adjunct_only",
+      "message": "Ayurvedic medicine should not replace diagnosis or treatment of suspected skin cancer."
+    },
+    "red_flags": [
+      "rapid growth",
+      "bleeding",
+      "non-healing sore",
+      "painful or tender lesion"
+    ]
+  },
+
+  "Vascular lesions": {
+    "severity": "requires_identification",
+    "care_level": "clinical_review_if_uncertain_or_changed",
+    "summary": "A broad image category that can include different vascular skin lesions with different management.",
+    "medication_guidance": {
+      "type": "depends_on_lesion",
+      "message": "There is no single medication appropriate for all vascular lesions. Clinical identification is needed before treatment."
+    },
+    "lifestyle": [
+      "Avoid repeated trauma or irritation.",
+      "Monitor for bleeding, rapid change or new symptoms."
+    ],
+    "ayurveda": {
+      "type": "wellness_only",
+      "message": "Do not use disease-specific Ayurvedic medication without a confirmed diagnosis and qualified practitioner review."
+    },
+    "red_flags": [
+      "spontaneous bleeding",
+      "rapid enlargement",
+      "pain",
+      "ulceration",
+      "new associated symptoms"
+    ]
+  }
+}

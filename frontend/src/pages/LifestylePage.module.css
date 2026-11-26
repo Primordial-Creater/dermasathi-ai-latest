@@ -1,0 +1,757 @@
+/* ============================================================
+   LifestylePage.module.css — Ayurveda & Botanical Wellness
+   Distinctive green botanical identity with organic environments
+   ============================================================ */
+
+.pageContainer {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: var(--space-6) var(--space-6) var(--space-14);
+  background: var(--grad-ayurveda-showcase);
+  min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* Botanical decorative background elements */
+.pageContainer::before {
+  content: '';
+  position: absolute;
+  top: -10%;
+  left: -10%;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle at 30% 30%, var(--feat-ayurveda-herbal) 0%, transparent 60%);
+  border-radius: 50%;
+  opacity: 0.3;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.pageContainer::after {
+  content: '';
+  position: absolute;
+  bottom: -10%;
+  right: -10%;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle at 70% 70%, var(--feat-ayurveda-warm) 0%, transparent 60%);
+  border-radius: 50%;
+  opacity: 0.25;
+  z-index: 0;
+  pointer-events: none;
+}
+
+@media (max-width: 768px) {
+  .pageContainer {
+    padding: var(--space-4) var(--space-4) var(--space-10);
+  }
+
+  .pageContainer::before {
+    width: 300px;
+    height: 300px;
+  }
+
+  .pageContainer::after {
+    width: 250px;
+    height: 250px;
+  }
+}
+
+/* Header */
+.header {
+  margin-bottom: var(--space-8);
+  position: relative;
+  z-index: 2;
+}
+
+.headerContent {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-8);
+  align-items: start;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.headerText {
+  text-align: left;
+}
+
+@media (max-width: 1024px) {
+  .headerContent {
+    grid-template-columns: 1fr;
+    gap: var(--space-6);
+  }
+  .headerText {
+    text-align: center;
+  }
+}
+
+.badgePill {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  background: var(--feat-ayurveda-bg);
+  color: var(--feat-ayurveda-primary);
+  border: 1px solid var(--feat-ayurveda-border);
+  border-radius: var(--radius-pill);
+  padding: var(--space-1) var(--space-3);
+  font-size: var(--text-xs);
+  font-weight: var(--weight-bold);
+  letter-spacing: 0.04em;
+  margin-bottom: var(--space-3);
+  text-transform: uppercase;
+  display: inline-block;
+  box-shadow: var(--shadow-neu-raised-sm);
+}
+
+.badgeIcon {
+  width: 14px;
+  height: 14px;
+}
+
+.title {
+  font-size: var(--text-5xl);
+  font-weight: var(--weight-bold);
+  color: var(--color-text-primary);
+  letter-spacing: -0.03em;
+  margin: 0 0 var(--space-3);
+  line-height: var(--leading-tight);
+  background: linear-gradient(90deg, var(--feat-ayurveda-deep) 0%, var(--feat-ayurveda-primary) 60%, var(--feat-ayurveda-leaf) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+@media (max-width: 768px) {
+  .title {
+    font-size: var(--text-4xl);
+  }
+}
+
+.subtitle {
+  font-size: var(--text-lg);
+  color: var(--color-text-secondary);
+  line-height: var(--leading-relaxed);
+  margin: 0;
+  max-width: 640px;
+}
+
+.headerVisual {
+  position: relative;
+}
+
+.lotusCanvas {
+  width: 100%;
+  height: 100%;
+  min-height: 360px;
+  border-radius: var(--radius-card-lg);
+  background: 
+    radial-gradient(ellipse 60% 50% at 50% 30%, rgba(255, 248, 231, 0.3) 0%, transparent 60%),
+    var(--feat-ayurveda-bg);
+  border: 1px solid var(--feat-ayurveda-border);
+  box-shadow: 
+    var(--shadow-neu-raised-lg),
+    0 0 60px rgba(255, 240, 200, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  overflow: hidden;
+  position: relative;
+}
+
+.lotusCanvas::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 50% 50%, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+@media (max-width: 1024px) {
+  .lotusCanvas {
+    min-height: 320px;
+  }
+}
+
+@media (max-width: 768px) {
+  .lotusCanvas {
+    min-height: 280px;
+  }
+}
+
+/* Disclaimer Banner */
+.disclaimerBanner {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+  background: var(--feat-ayurveda-bg);
+  border: 1px solid var(--feat-ayurveda-border);
+  border-radius: var(--radius-card-lg);
+  padding: var(--space-5) var(--space-6);
+  margin-bottom: var(--space-8);
+  box-shadow: var(--shadow-neu-raised-sm);
+  position: relative;
+  z-index: 2;
+  border-left: 4px solid var(--feat-ayurveda-primary);
+}
+
+.disclaimerBanner strong {
+  display: block;
+  font-size: var(--text-sm);
+  font-weight: var(--weight-bold);
+  color: var(--feat-ayurveda-deep);
+  margin-bottom: var(--space-1);
+}
+
+.disclaimerBanner p {
+  margin: 0;
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+  line-height: var(--leading-relaxed);
+}
+
+.disclaimerIcon {
+  flex-shrink: 0;
+  margin-top: var(--space-1);
+  color: var(--feat-ayurveda-primary);
+}
+
+/* Section */
+.section {
+  margin-bottom: var(--space-12);
+  position: relative;
+  z-index: 2;
+}
+
+.sectionHeader {
+  text-align: center;
+  margin-bottom: var(--space-8);
+  max-width: 720px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.sectionTitleWrap {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.sectionTitle {
+  font-size: var(--text-3xl);
+  font-weight: var(--weight-bold);
+  color: var(--color-text-primary);
+  margin: 0 0 var(--space-2);
+  line-height: var(--leading-tight);
+}
+
+.sectionSubtitle {
+  font-size: var(--text-lg);
+  color: var(--color-text-secondary);
+  margin: 0;
+  line-height: var(--leading-relaxed);
+}
+
+.section.herbalSection {
+  background: var(--feat-ayurveda-bg);
+  border-radius: var(--radius-card-lg);
+  padding: var(--space-8);
+  margin-bottom: var(--space-12);
+  border: 1px solid var(--feat-ayurveda-border);
+  position: relative;
+  overflow: hidden;
+}
+
+.section.herbalSection::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 120px;
+  height: 120px;
+  background: radial-gradient(circle at 100% 0%, var(--feat-ayurveda-primary) 0%, transparent 60%);
+  opacity: 0.1;
+  pointer-events: none;
+}
+
+.section.evidenceSection {
+  background: linear-gradient(135deg, var(--feat-ayurveda-deep) 0%, var(--feat-ayurveda-primary) 100%);
+  border-radius: var(--radius-card-lg);
+  padding: var(--space-8);
+  color: var(--white);
+  margin-bottom: var(--space-12);
+  position: relative;
+  overflow: hidden;
+  border: 1px solid var(--feat-ayurveda-primary);
+}
+
+.section.evidenceSection::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4H32v-4h4v-4l4 4-4 4-4 4v4H28v4h-4v4L20 20l4-4h4v-4H16v-4h4V8h4V4h4v4h4v4l4 4-4 4-4 4v4H24v4h-4v4H16v4l-4-4-4 4-4 4V32l4-4-4-4-4 4v-4H4v-4h4v-4H8V16h4v-4h4v-4h4V0h4v4h4v4z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.section.evidenceSection .sectionTitle,
+.section.evidenceSection .sectionSubtitle {
+  color: var(--white);
+}
+
+/* Feature Grid */
+.featureGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-4);
+}
+
+.featureCard {
+  background: var(--white);
+  border: 1px solid var(--feat-ayurveda-border);
+  border-radius: var(--radius-card);
+  padding: var(--space-5);
+  display: flex;
+  gap: var(--space-4);
+  transition: var(--transition-smooth);
+  position: relative;
+  overflow: hidden;
+}
+
+.featureCard::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--feat-ayurveda-primary);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--dur-smooth) var(--ease-out);
+}
+
+.featureCard:hover {
+  box-shadow: var(--shadow-neu-raised-lg);
+  transform: translateY(-4px);
+  border-color: var(--feat-ayurveda-primary);
+}
+
+.featureCard:hover::before {
+  transform: scaleX(1);
+}
+
+.featureIcon {
+  width: 52px;
+  height: 52px;
+  border-radius: var(--radius-card-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  box-shadow: var(--shadow-neu-raised-sm);
+  background: var(--feat-ayurveda-bg);
+  color: var(--feat-ayurveda-primary);
+}
+
+.iconPitta {
+  color: var(--feat-ayurveda-primary);
+}
+
+.iconVata {
+  color: var(--feat-ayurveda-leaf);
+}
+
+.featureCard h3 {
+  font-size: var(--text-lg);
+  font-weight: var(--weight-bold);
+  color: var(--color-text-primary);
+  margin: 0 0 var(--space-2);
+}
+
+.featureCard p {
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+  margin: 0 0 var(--space-3);
+  line-height: var(--leading-relaxed);
+}
+
+.traditionalTag {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  font-size: var(--text-xs);
+  font-weight: var(--weight-semibold);
+  color: var(--feat-ayurveda-primary);
+  background: var(--feat-ayurveda-bg);
+  padding: var(--space-1) var(--space-2);
+  border-radius: var(--radius-pill);
+}
+
+/* Herb Grid */
+.herbGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-4);
+}
+
+.herbCard {
+  background: var(--feat-ayurveda-card);
+  border: 1px solid var(--feat-ayurveda-border);
+  border-radius: var(--radius-card);
+  padding: var(--space-5) var(--space-4);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-3);
+  text-align: center;
+  transition: var(--transition-smooth);
+  position: relative;
+  overflow: hidden;
+}
+
+.herbCard::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 50%, var(--feat-ayurveda-leaf) 0%, transparent 70%);
+  opacity: 0;
+  transition: opacity var(--dur-smooth) var(--ease-out);
+  pointer-events: none;
+}
+
+.herbCard:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-neu-raised-lg);
+  border-color: var(--feat-ayurveda-primary);
+}
+
+.herbCard:hover::before {
+  opacity: 0.1;
+}
+
+.herbName {
+  font-size: var(--text-lg);
+  font-weight: var(--weight-bold);
+  color: var(--feat-ayurveda-deep);
+  margin: 0;
+  z-index: 1;
+  position: relative;
+}
+
+.herbUse {
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+  margin: 0;
+  line-height: var(--leading-relaxed);
+  z-index: 1;
+  position: relative;
+}
+
+.herbCaution {
+  font-size: var(--text-xs);
+  font-weight: var(--weight-medium);
+  color: var(--feat-ayurveda-primary);
+  background: var(--feat-ayurveda-bg);
+  padding: var(--space-1) var(--space-2);
+  border-radius: var(--radius-pill);
+  z-index: 1;
+  position: relative;
+}
+
+/* Routine Grid */
+.routineGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-4);
+}
+
+.routineCard {
+  background: var(--white);
+  border: 1px solid var(--feat-ayurveda-border);
+  border-radius: var(--radius-card);
+  padding: var(--space-5) var(--space-4);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-3);
+  text-align: center;
+  transition: var(--transition-smooth);
+  position: relative;
+  overflow: hidden;
+}
+
+.routineCard::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--feat-ayurveda-primary);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--dur-smooth) var(--ease-out);
+}
+
+.routineCard:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-neu-raised-lg);
+  border-color: var(--feat-ayurveda-primary);
+}
+
+.routineCard:hover::before {
+  transform: scaleX(1);
+}
+
+.routineIcon {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--feat-ayurveda-bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  box-shadow: var(--shadow-neu-raised-sm);
+  color: var(--feat-ayurveda-primary);
+}
+
+.routineTime {
+  font-size: var(--text-xs);
+  font-weight: var(--weight-semibold);
+  color: var(--feat-ayurveda-primary);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin: 0;
+}
+
+.routineTitle {
+  font-size: var(--text-base);
+  font-weight: var(--weight-bold);
+  color: var(--color-text-primary);
+  margin: var(--space-1) 0 var(--space-1);
+}
+
+.routineDesc {
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+  margin: 0;
+  line-height: var(--leading-normal);
+}
+
+/* Evidence Grid */
+.evidenceGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-4);
+}
+
+.evidenceCard {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: var(--radius-card);
+  padding: var(--space-5);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  transition: var(--transition-smooth);
+  position: relative;
+}
+
+.evidenceCard::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--feat-ayurveda-primary) 0%, var(--feat-ayurveda-leaf) 100%);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--dur-smooth) var(--ease-out);
+}
+
+.evidenceCard:hover {
+  background: rgba(255, 255, 255, 0.15);
+  transform: translateY(-2px);
+}
+
+.evidenceCard:hover::before {
+  transform: scaleX(1);
+}
+
+.evidenceHeader {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.evidenceCategory {
+  font-size: var(--text-xs);
+  font-weight: var(--weight-bold);
+  color: var(--feat-ayurveda-herbal);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.evidenceTypeTag {
+  font-size: var(--text-xs);
+  font-weight: var(--weight-semibold);
+  padding: var(--space-1) var(--space-2);
+  border-radius: var(--radius-pill);
+  margin-left: auto;
+}
+
+.evidenceTypeTag[data-type="traditional"] {
+  background: var(--feat-ayurveda-warm);
+  color: #7c2d12;
+}
+
+.evidenceTypeTag[data-type="scientific"] {
+  background: var(--feat-ayurveda-leaf);
+  color: #14532d;
+}
+
+.evidenceTypeTag[data-type="both"] {
+  background: var(--feat-ayurveda-primary);
+  color: var(--white);
+}
+
+.evidenceCard h3 {
+  font-size: var(--text-lg);
+  font-weight: var(--weight-bold);
+  color: var(--white);
+  margin: 0 0 var(--space-2);
+}
+
+.evidenceCard p {
+  font-size: var(--text-sm);
+  color: rgba(255, 255, 255, 0.85);
+  margin: 0 0 var(--space-3);
+  line-height: var(--leading-relaxed);
+}
+
+.evidenceAction {
+  font-size: var(--text-sm);
+  color: rgba(255, 255, 255, 0.9);
+  line-height: var(--leading-relaxed);
+  margin: 0 0 var(--space-2);
+  padding-left: var(--space-3);
+  border-left: 2px solid var(--feat-ayurveda-herbal);
+}
+
+.evidenceSource {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--text-xs);
+  color: rgba(255, 255, 255, 0.7);
+  margin-bottom: var(--space-2);
+}
+
+.sourceLabel {
+  font-weight: var(--weight-semibold);
+}
+
+.evidenceCaution {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-2);
+  font-size: var(--text-xs);
+  color: rgba(255, 255, 255, 0.75);
+  padding-top: var(--space-2);
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.cautionIcon {
+  color: var(--feat-ayurveda-warm);
+  flex-shrink: 0;
+  margin-top: var(--space-0_5);
+}
+
+/* Floating botanical decorations for organic motion */
+.botanicalFloat {
+  position: absolute;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.4;
+  animation: float 6s ease-in-out infinite;
+}
+
+.botanicalFloat:nth-child(2) {
+  animation-delay: 2s;
+  animation-duration: 8s;
+}
+
+.botanicalFloat:nth-child(3) {
+  animation-delay: 4s;
+  animation-duration: 7s;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  33% { transform: translateY(-15px) rotate(2deg); }
+  66% { transform: translateY(10px) rotate(-1deg); }
+}
+
+/* Leaf decorations scattered through the page */
+.leafDecoration {
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  background: var(--feat-ayurveda-leaf);
+  mask-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M12 2C6.48 2 2 6.48 2 12C2 16.44 5.55 20.13 10.29 21.43C10.75 21.74 11.25 21.74 11.71 21.43C16.45 20.13 20 16.44 20 12C20 6.48 15.52 2 12 2Z' fill='white'/%3E%3C/svg%3E");
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M12 2C6.48 2 2 6.48 2 12C2 16.44 5.55 20.13 10.29 21.43C10.75 21.74 11.25 21.74 11.71 21.43C16.45 20.13 20 16.44 20 12C20 6.48 15.52 2 12 2Z' fill='white'/%3E%3C/svg%3E");
+  opacity: 0.3;
+  animation: sway 4s ease-in-out infinite;
+}
+
+.leafDecoration:nth-child(even) {
+  background: var(--feat-ayurveda-primary);
+  opacity: 0.2;
+  animation-duration: 5s;
+  animation-delay: 1s;
+}
+
+.leafDecoration:nth-child(3) {
+  background: var(--feat-ayurveda-deep);
+  opacity: 0.15;
+  animation-duration: 6s;
+  animation-delay: 2s;
+}
+
+@keyframes sway {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-10px) rotate(5deg); }
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .herbGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .routineGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .featureGrid {
+    grid-template-columns: 1fr;
+  }
+  .evidenceGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .herbGrid {
+    grid-template-columns: 1fr;
+  }
+  .routineGrid {
+    grid-template-columns: 1fr;
+  }
+  .pageContainer {
+    padding-left: var(--space-4);
+    padding-right: var(--space-4);
+  }
+}

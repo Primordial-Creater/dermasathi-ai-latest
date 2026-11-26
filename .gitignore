@@ -1,0 +1,145 @@
+# ============================================================
+# Secrets / credentials
+# ============================================================
+
+.env
+.env.*
+!.env.example
+
+backend/.env
+backend/.env.*
+!backend/.env.example
+
+*.pem
+*.key
+*credentials*
+*credential*
+
+# ============================================================
+# Python
+# ============================================================
+
+.venv/
+venv/
+ENV/
+
+__pycache__/
+*.py[cod]
+
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# ============================================================
+# Logs / runtime files
+# ============================================================
+
+*.log
+training_logs/
+backend/logs/
+backend/uploads/
+
+# ============================================================
+# Research / datasets / training artifacts
+# ============================================================
+
+data/
+experiments/
+backend/datasets/
+backend/trained_models/
+backend/notebooks/
+scripts/
+
+# ============================================================
+# Local backups / archives
+# ============================================================
+
+_integration_backups/
+*_ARCHIVE_*/
+
+# ============================================================
+# IDE / OS
+# ============================================================
+
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Local databases: do not commit user or development data
+*.db
+*.db-shm
+*.db-wal
+*.db-journal
+*.sqlite
+*.sqlite3
+
+# Frontend dependencies and generated artifacts
+frontend/node_modules/
+frontend/dist/
+frontend/.vite/
+frontend/coverage/
+
+# Agent worktrees, local IDE data and caches
+.kilo/
+.agents/
+frontend/.kilo/
+frontend/.agents/
+.cache/
+
+# User data, uploads, database exports and local runtime files
+uploads/
+private_uploads/
+user_uploads/
+*.sqlite
+*.sqlite3
+*.db
+*.dump
+*.backup
+*.bak
+*.sql.gz
+*.tar.gz
+
+# Local secrets and certificates
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+secrets/
+
+
+# Secrets and local environment
+.env
+.env.*
+!.env.example
+**/.env
+**/.env.*
+!**/.env.example
+
+# Credentials and private files
+*credentials*
+kaggle*secret*
+*private-key*
+
+# Local database exports
+*.sqlite
+*.sqlite3
+*.db
+*.dump
+*.backup
+*.sql
+
+# Large ML model weights
+*.keras
+*.h5
+*.pt
+*.pth
+*.onnx
+*.safetensors
+
+# Backups and temporary files
+*.bak
+*.bak-*
+*.backup*
+*.before-*

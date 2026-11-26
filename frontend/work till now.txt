@@ -1,0 +1,25 @@
+# Work Till Now
+
+## Project
+DermSathiAI frontend (React 18 + Vite + TS). Premium neumorphic → midnight navy/teal redesign in progress.
+
+## Completed in this session
+- Rewrote src/styles/tokens.css to midnight navy/teal/icy white palette with glass-friendly surfaces.
+- Added src/services/apiClient.ts with configurable base URL (VITE_API_BASE_URL).
+- Added src/components/three/Hero3D.tsx (R3F orb + stars, reduced-motion fallback).
+- Integrated Hero3D into LandingPage scanner wrapper (kept EpidermalScannerScene).
+- Created pages: LifestylePage (+module css), NearbyCarePage (+css), HealthHistoryPage (+css) with demo content, filters, empty states.
+- Added routes in App.tsx for /lifestyle, /nearby-care, /health-history.
+- Added nav items in AppLayout for new pages.
+
+## Existing (pre-session)
+- 7 original pages, contexts (AppMode, Clinical, Toast), common components, locales, R3F epidermal scanner, mock/real skin analysis, reminders, reports.
+
+## Simulated / Demo
+- All new pages use illustrative sample data; no backend calls.
+- Reminders client-side localStorage; OCR/symptoms demo-only.
+
+## Pending
+- Full interaction wiring, accessibility pass, reduced motion, mobile polish, API client usage across pages, tests/build via Docker.
+
+[Appended baseline record above; future updates will be appended, not overwritten.]

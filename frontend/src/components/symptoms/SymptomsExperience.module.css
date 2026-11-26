@@ -1,0 +1,601 @@
+/* Glass tokens. Everything is scoped under .root, so nothing leaks into the host app.
+   Ported from the supplied SymptomsExperience.module.css, then reworked so the
+   panels are genuinely translucent and a blurred botanical layer reads through
+   them (the original was effectively opaque pale cards). */
+.root {
+  --ink: #12303a; --mut: #58727d; --teal: #14a39a; --teal-d: #0b7d6e;
+  --card: linear-gradient(
+  135deg,
+  rgba(255, 255, 255, 0.76),
+  rgba(255, 255, 255, 0.68)
+  );
+  --bd: rgba(255, 255, 255, 0.76); --chip: rgba(255, 255, 255, 0.80);
+  --rose: #fde8ea; --rose-bd: #e9a3ad; --rose-ink: #8a2c3b; --shadow: 0 12px 34px rgba(30, 150, 150, 0.16);
+  --t0: rgba(150, 230, 200, 0.22); --t1: rgba(160, 205, 250, 0.22); --t2: rgba(200, 180, 250, 0.2);
+  --t3: rgba(255, 205, 170, 0.22); --t4: rgba(253, 215, 222, 0.38); --t5: rgba(150, 235, 215, 0.22);
+  /* Horizontal bleed that matches AppLayout's .contentCanvas padding, so the
+     botanical layer reaches the edge of the shared canvas (no side strip).
+     16px desktop, 12px at <=640px. */
+  --sx-gutter: 16px;
+  position: relative;
+  isolation: isolate;
+  display: grid;
+  gap: 14px;
+  align-content: start;
+  color: var(--ink);
+  font-size: 14px;
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+/* Layer 1 — botanical photograph. Disabled: the shared route-aware background
+   in AppLayout now supplies symptoms-background-image.jpg, so this local layer is
+   intentionally empty to avoid a duplicate overlapping image. */
+.root::before {
+  content: "";
+  position: absolute;
+  inset: calc(-1 * var(--sx-gutter));
+  z-index: -2;
+  background: none;
+  pointer-events: none;
+}
+/* Layer 2 — mint / aqua / sky wash so the page stays bright and text readable. */
+.root::after {
+  content: "";
+  position: absolute;
+  inset: calc(-1 * var(--sx-gutter));
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(
+      620px 460px at 8% 0%,
+      rgba(198, 243, 230, 0.28),
+      transparent 62%
+    ),
+    radial-gradient(
+      700px 500px at 96% 6%,
+      rgba(191, 226, 250, 0.28),
+      transparent 62%
+    ),
+    radial-gradient(
+      640px 480px at 50% 100%,
+      rgba(214, 246, 236, 0.24),
+      transparent 66%
+    ),
+    linear-gradient(
+      180deg,
+      rgba(240, 251, 248, 0.28),
+      rgba(233, 246, 252, 0.32)
+    );
+}
+.root *,
+.root *::before,
+.root *::after {
+  box-sizing: border-box;
+}
+.root h1,
+.root h2,
+.root h3,
+.root p,
+.root ul {
+  margin: 0;
+}
+
+.card {
+  background: var(--card);
+  border: 1px solid rgba(255, 255, 255, 0.72);
+  border-radius: 24px;
+  box-shadow: var(--shadow), inset 0 1px 0 rgba(255, 255, 255, 0.92),
+    inset 0 -26px 42px rgba(120, 225, 210, 0.1);
+  backdrop-filter: blur(22px) saturate(1.45);
+  -webkit-backdrop-filter: blur(22px) saturate(1.45);
+}
+section.card {
+  padding: 18px 20px;
+  background: linear-gradient(135deg, var(--tn, transparent), transparent 62%), var(--card);
+}
+.card[data-tone="0"] { --tn: var(--t0); }
+.card[data-tone="1"] { --tn: var(--t1); }
+.card[data-tone="2"] { --tn: var(--t2); }
+.card[data-tone="3"] { --tn: var(--t3); }
+.card[data-tone="4"] { --tn: var(--t4); }
+.card[data-tone="5"] { --tn: var(--t5); }
+.card[data-invalid="true"] { border-color: #e08a96; }
+.card[data-flag="true"] { border-color: var(--rose-bd); }
+
+.hero {
+  position: relative;
+  overflow: hidden;
+  min-height: 232px;
+  padding: clamp(24px, 3vw, 38px);
+  display: flex;
+  align-items: center;
+  border: 1px solid rgba(255, 255, 255, 0.76);
+  border-radius: 24px;
+  background: linear-gradient(
+    115deg,
+    #edf7fc 0%,
+    #e7f2f9 56%,
+    #dceff6 100%
+  );
+  box-shadow: 0 12px 30px rgba(24, 120, 140, 0.13), inset 0 1px 0 rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(18px) saturate(1.4);
+  -webkit-backdrop-filter: blur(18px) saturate(1.4);
+}
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: 0 0 0 auto;
+  width: 55%;
+  background: var(--sx-hero, none) right / cover;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 40%);
+  mask-image: linear-gradient(90deg, transparent, #000 40%);
+}
+.heroCopy {
+  position: relative;
+  z-index: 2;
+  max-width: 58%;
+}
+.heroArt {
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 48%;
+  overflow: hidden;
+  pointer-events: none;
+
+  -webkit-mask-image: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(0, 0, 0, 0.45) 20%,
+    #000 46%
+  );
+  mask-image: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(0, 0, 0, 0.45) 20%,
+    #000 46%
+  );
+}
+
+.heroArt > img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: right center;
+}
+
+/* .heroArt > svg {
+  width: 100%;
+  height: 100%;
+  max-height: 230px;
+} */
+.tag {
+  display: inline-block;
+  background: #17a77f;
+  color: #fff;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 4px 12px;
+  border-radius: 99px;
+  letter-spacing: 0.5px;
+  margin-bottom: 10px;
+}
+.hero h1 {
+  font-size: 36px;
+  line-height: 1.1;
+}
+.hero h2 {
+  font-size: 17px;
+  margin: 8px 0;
+}
+.hero p {
+  line-height: 1.5;
+}
+
+.progress {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 12px 18px;
+  font-weight: 600;
+  font-size: 13px;
+}
+.progressNote {
+  margin-left: auto;
+  color: var(--mut);
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+.bar {
+  flex: 1;
+  height: 8px;
+  border-radius: 9px;
+  background: rgba(11, 138, 134, 0.15);
+  overflow: hidden;
+}
+.bar i {
+  display: block;
+  height: 100%;
+  background: linear-gradient(90deg, var(--teal), #7ad7a6);
+  transition: width 0.3s;
+}
+
+.card h3 {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 17px;
+}
+.num {
+  display: grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  flex: none;
+  border-radius: 50%;
+  background: var(--teal);
+  color: #fff;
+  font-size: 14px;
+}
+.card[data-done="true"] .num {
+  background: #2fb673;
+}
+.card[data-flag="true"] .num {
+  background: #d9788a;
+}
+.sub {
+  color: var(--mut);
+  margin: 4px 0 12px 42px;
+}
+.body {
+  margin-left: 42px;
+  display: grid;
+  gap: 14px;
+}
+.visual {
+  max-width: 340px;
+  width: 100%;
+  justify-self: center;
+}
+
+/* Desktop: illustration ≈40%, location options ≈60%, vertically centred. */
+@media (min-width: 900px) {
+  .card[data-visual="true"] .body {
+    grid-template-columns: minmax(0, 2fr) minmax(0, 3fr);
+    align-items: center;
+    gap: 26px;
+  }
+  .card[data-visual="true"] .visual {
+    max-width: 300px;
+  }
+}
+
+/* Section entrance. */
+@keyframes cardIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+.root > .card {
+  animation: cardIn 0.42s cubic-bezier(0.23, 1, 0.32, 1) both;
+  animation-delay: calc(var(--i, 0) * 55ms);
+}
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px 8px 9px;
+  border-radius: 99px;
+  border: 1.5px solid var(--bd);
+  background: var(--chip);
+  color: var(--ink);
+  font-family: inherit;
+  font-size: 13.5px;
+  font-weight: 600;
+  line-height: 1.35;
+  text-align: left;
+  cursor: pointer;
+  box-shadow: 0 3px 10px rgba(30, 130, 140, 0.1);
+  transition: transform 0.15s, border-color 0.15s;
+}
+.chipPlain {
+  padding: 8px 16px;
+}
+.chip:hover {
+  transform: translateY(-2px);
+}
+.chipIcon {
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: rgba(20, 163, 154, 0.14);
+  color: var(--teal-d);
+}
+.chip[aria-pressed="true"] {
+  border-color: var(--teal);
+  background: rgba(20, 163, 154, 0.16);
+  box-shadow: 0 0 0 3px rgba(20, 163, 154, 0.15);
+}
+.chip[aria-pressed="true"]::after {
+  content: "✓";
+  color: var(--teal-d);
+  font-weight: 800;
+}
+.chipFlag[aria-pressed="true"] {
+  border-color: #d9788a;
+  background: var(--rose);
+  box-shadow: 0 0 0 3px rgba(217, 120, 138, 0.18);
+}
+.chipFlag[aria-pressed="true"]::after {
+  color: var(--rose-ink);
+}
+.label {
+  display: block;
+  margin: 14px 0 8px;
+  font-weight: 600;
+}
+.textarea {
+  width: 100%;
+  min-height: 84px;
+  border-radius: 14px;
+  border: 1.5px solid var(--bd);
+  background: var(--chip);
+  color: var(--ink);
+  padding: 12px;
+  font-family: inherit;
+  font-size: 14px;
+  line-height: 1.5;
+  resize: vertical;
+}
+.textarea::placeholder {
+  color: var(--mut);
+}
+.count {
+  text-align: right;
+  color: var(--mut);
+  font-size: 12px;
+}
+.chip:focus-visible,
+.textarea:focus-visible,
+.btn:focus-visible {
+  outline: 2px solid var(--teal);
+  outline-offset: 2px;
+}
+
+.warn {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  margin: 14px 0 0 42px;
+  padding: 14px 16px;
+  border-radius: 16px;
+  background: var(--rose);
+  border: 1.5px solid var(--rose-bd);
+  color: var(--rose-ink);
+  line-height: 1.5;
+}
+.error {
+  color: #c0394d;
+  font-weight: 600;
+  margin: 10px 0 0 42px;
+  font-size: 13px;
+}
+
+.success,
+.failure {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  padding: 16px 20px;
+  font-weight: 600;
+}
+.success > div {
+  display: grid;
+  gap: 8px;
+}
+.successTitle {
+  font-size: 15px;
+}
+.successDesc {
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.5;
+}
+.successLinks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 2px;
+}
+.primaryLink,
+.secondaryLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  border-radius: 99px;
+  font-size: 13px;
+  font-weight: 700;
+  text-decoration: none;
+}
+.primaryLink {
+  background: linear-gradient(135deg, var(--teal), var(--teal-d));
+  color: #fff;
+}
+.secondaryLink {
+  background: rgba(255, 255, 255, 0.8);
+  color: var(--teal-d);
+  border: 1.5px solid rgba(11, 125, 110, 0.35);
+}
+.primaryLink:focus-visible,
+.secondaryLink:focus-visible {
+  outline: 2px solid var(--teal);
+  outline-offset: 2px;
+}
+.failure {
+  background: var(--rose);
+  border-color: var(--rose-bd);
+  color: var(--rose-ink);
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+  padding: 14px 18px;
+  position: sticky;
+  z-index: 5;
+  bottom: calc(8px + env(safe-area-inset-bottom, 0px));
+}
+.spacer {
+  flex: 1;
+}
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border: 1.5px solid var(--bd);
+  border-radius: 99px;
+  padding: 12px 22px;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  color: var(--ink);
+  background: var(--chip);
+  transition: transform 0.15s;
+}
+.btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+}
+.btn:disabled {
+  opacity: 0.6;
+  cursor: progress;
+}
+.primary {
+  background: linear-gradient(135deg, var(--teal), var(--teal-d));
+  color: #fff;
+  border: 0;
+  box-shadow: 0 6px 14px rgba(11, 125, 110, 0.3);
+}
+.disclaimer {
+  color: var(--mut);
+  font-size: 12px;
+  text-align: center;
+  padding: 4px 10px 12px;
+}
+
+@media (max-width: 900px) {
+  .heroCopy {
+    max-width: 100%;
+  }
+  /* Artwork drops behind the copy instead of sitting over it. */
+  .heroArt {
+    width: 100%;
+    z-index: 0;
+    opacity: 0.28;
+  }
+}
+
+@media (max-width: 700px) {
+  .hero {
+    padding: 24px 20px;
+  }
+  .hero h1 {
+    font-size: 28px;
+  }
+  .progress {
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .progressNote {
+    margin-left: 0;
+  }
+  .sub,
+  .body,
+  .warn,
+  .error {
+    margin-left: 0;
+  }
+  .spacer {
+    display: none;
+  }
+  .btn {
+    flex: 1 1 40%;
+    justify-content: center;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .root > .card {
+    animation: none;
+  }
+  .chip,
+  .btn,
+  .bar i {
+    transition: none;
+  }
+}
+
+/* .contentCanvas pads the main content by 12px at <=640px; the bleed matches it. */
+@media (max-width: 640px) {
+  .root {
+    --sx-gutter: 12px;
+  }
+}
+/* Shared feature-header finish: smooth edges, calm depth and consistent proportions. */
+.hero { min-height: 232px; border-radius: 26px; border: 1px solid rgba(255,255,255,.84); box-shadow: 0 16px 38px rgba(27,109,130,.15), inset 0 1px 0 rgba(255,255,255,.92); }
+
+
+
+
+
+
+
+
+
+@media (max-width: 900px) {
+  .heroCopy {
+    max-width: 78%;
+    z-index: 2;
+  }
+
+  .heroArt {
+    width: 58%;
+    opacity: 0.72;
+  }
+}
+
+@media (max-width: 700px) {
+  .hero {
+    min-height: 235px;
+    padding: 24px 20px;
+  }
+
+  .heroCopy {
+    max-width: 100%;
+    z-index: 2;
+  }
+
+  .heroArt {
+    width: 62%;
+    opacity: 0.25;
+  }
+}

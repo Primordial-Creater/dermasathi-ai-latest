@@ -1,0 +1,95 @@
+/* ============================================================
+   NeuCard — Clinical Precision Card Component
+   Bright Healthcare Design System (No murky neumorphism)
+   ============================================================ */
+
+.card {
+  background: var(--color-bg-card);
+  color: var(--color-text-primary);
+  border: 1px solid var(--border-hairline);
+  box-sizing: border-box;
+  transition: var(--transition-tactile);
+}
+
+/* Variants */
+.variantRaised {
+  background: var(--color-bg-surface);
+  box-shadow: var(--shadow-neu-raised);
+}
+
+.variantRaisedSm {
+  background: var(--color-bg-surface);
+  box-shadow: var(--shadow-neu-raised-sm);
+}
+
+.variantRaisedLg {
+  background: var(--color-bg-surface);
+  box-shadow: var(--shadow-neu-raised-lg);
+  border-color: var(--border-subtle);
+}
+
+.variantPressed {
+  background: var(--color-bg-subtle);
+  border-color: var(--border-hairline);
+  box-shadow: var(--shadow-neu-pressed);
+}
+
+.variantPressedSm {
+  background: var(--color-bg-subtle);
+  border-color: var(--border-hairline);
+  box-shadow: var(--shadow-neu-pressed-sm);
+}
+
+.variantGlow {
+  background: var(--color-bg-surface);
+  border-color: rgba(13, 148, 136, 0.25);
+  box-shadow: var(--shadow-neu-raised), 0 0 0 1px rgba(13, 148, 136, 0.15), var(--shadow-glow-mint);
+}
+
+.variantGlass {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-color: rgba(255, 255, 255, 0.6);
+  box-shadow: var(--shadow-neu-raised);
+}
+
+/* Border Radius */
+.radiusSm {
+  border-radius: var(--radius-card-sm);
+}
+
+.radiusMd {
+  border-radius: var(--radius-card);
+}
+
+.radiusLg {
+  border-radius: var(--radius-card-lg);
+}
+
+.radiusPill {
+  border-radius: var(--radius-pill);
+}
+
+/* Padding presets */
+.paddingSm {
+  padding: 14px 18px;
+}
+
+.paddingMd {
+  padding: 22px 26px;
+}
+
+.paddingLg {
+  padding: 32px 36px;
+}
+
+/* Interactive hover effect */
+.interactive {
+  cursor: pointer;
+}
+
+.interactive:hover {
+  border-color: var(--border-subtle);
+  box-shadow: var(--shadow-neu-raised-lg);
+}

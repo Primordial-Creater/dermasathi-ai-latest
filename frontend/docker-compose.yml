@@ -1,0 +1,26 @@
+
+networks:
+  dermasathi-network:
+    name: dermasathi-network
+    driver: bridge
+
+services:
+  dermasathi-frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: dev
+    container_name: dermasathi-frontend-dev
+    restart: unless-stopped
+    ports:
+      - "5173:5173"
+    environment:
+      - VITE_API_BASE_URL=http://localhost:8000
+      - VITE_DEMO_MODE=true
+    volumes:
+      - .:/app
+      - /app/node_modules
+    networks:
+      - dermasathi-network
+    stdin_open: true
+    tty: true

@@ -1,0 +1,101 @@
+# DermaSathiAI Skin Model — Base Configuration
+# All model-specific configs inherit from this.
+
+# --- Dataset ---
+dataset:
+  root_dir: "backend/datasets/skin"
+  raw_dir: "backend/datasets/skin/raw"
+  processed_dir: "backend/datasets/skin/processed"
+  metadata_dir: "backend/datasets/skin/metadata"
+  splits_dir: "backend/datasets/skin/splits"
+  reports_dir: "backend/datasets/skin/reports"
+
+# --- Class Mapping ---
+# Loaded dynamically from manifest/directory structure.
+# This is the prototype 14-class set. Production will differ.
+classes:
+  - "Actinic keratoses"
+  - "Basal cell carcinoma"
+  - "Benign keratosis-like lesions"
+  - "Chickenpox"
+  - "Cowpox"
+  - "Dermatofibroma"
+  - "Hand-foot-and-mouth disease"
+  - "Healthy"
+  - "Measles"
+  - "Melanocytic nevi"
+  - "Melanoma"
+  - "Monkeypox"
+  - "Squamous cell carcinoma"
+  - "Vascular lesions"
+
+# --- Training Defaults ---
+training:
+  seed: 42
+  batch_size: 32
+  epochs_head: 10
+  epochs_finetune: 20
+  learning_rate: 0.001
+  finetune_learning_rate: 0.00001
+  optimizer: "adam"
+  label_smoothing: 0.1
+  dropout: 0.3
+  class_weight_mode: "balanced"  # balanced | none | custom
+  mixed_precision: true
+  early_stopping_patience: 5
+  reduce_lr_patience: 3
+  reduce_lr_factor: 0.5
+  min_lr: 0.0000001
+  validation_split: 0.15
+  test_split: 0.15
+
+# --- Augmentation ---
+augmentation:
+  enabled: true
+  rotation_range: 20
+  width_shift_range: 0.1
+  height_shift_range: 0.1
+  horizontal_flip: true
+  vertical_flip: false  # Not always clinically valid
+  zoom_range: 0.15
+  brightness_range: [0.8, 1.2]
+  contrast_range: [0.8, 1.2]
+  fill_mode: "reflect"
+
+# --- Quality Gate ---
+quality_gate:
+  min_resolution: 64
+  max_resolution: 4096
+  min_file_size_bytes: 1024
+  max_file_size_bytes: 52428800  # 50MB
+  blur_threshold: 50.0  # Laplacian variance
+  min_brightness: 20
+  max_brightness: 240
+  min_contrast: 15
+  supported_formats: ["jpg", "jpeg", "png", "bmp", "tiff", "webp"]
+
+# --- Artifact Removal ---
+artifact_removal:
+  enabled: false  # Off by default; enable for ablation
+  hair_removal: true
+  morphological_kernel_size: 15
+  inpainting_radius: 6
+
+# --- Inference ---
+inference:
+  default_model: "inception_v3"
+  confidence_threshold: 0.60
+  abstention_threshold: 0.40
+  top_k: 3
+  enable_calibration: true
+
+# --- Calibration ---
+calibration:
+  method: "temperature_scaling"
+  initial_temperature: 1.5
+
+# --- Paths ---
+paths:
+  trained_models_dir: "backend/trained_models"
+  experiments_dir: "experiments"
+  logs_dir: "backend/logs"

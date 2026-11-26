@@ -1,0 +1,17 @@
+# ResNet50 — Model-Specific Configuration
+# Inherits from base_config.yaml
+
+model:
+  name: "resnet50"
+  architecture: "ResNet50"
+  image_size: 224
+  input_shape: [224, 224, 3]
+  unfreeze_from: "conv4_block1_1_conv"
+  pretrained_weights: "imagenet"
+
+training:
+  batch_size: 32
+  epochs_head: 10
+  epochs_finetune: 20
+  learning_rate: 0.001
+  finetune_learning_rate: 0.00001

@@ -1,0 +1,1052 @@
+/* ============================================================
+   DashboardExperience.module.css
+
+   Claude dashboard fidelity. Ported from the supplied
+   `DermaSathiAI Dashboard.html` / DashboardExperience reference:
+   same layout ratios, same multicolour card/tile gradients, same
+   glass recipe (translucent + backdrop blur + white rim +
+   inner highlight), same radii and type scale.
+
+   Only two deliberate deviations from the reference:
+     1. `.app` is a single column — the sidebar and header are
+        owned by AppLayout, so this component renders page content.
+     2. The hero's right-hand medical visual is the existing
+        <HumanBustFigure /> bust video rather than the flat shield.
+   ============================================================ */
+
+.root {
+  /* Reference palette, scoped so nothing leaks into the host app. */
+  --d-card: rgba(255, 255, 255, 0.62);
+  --d-bd: rgba(255, 255, 255, 0.85);
+  --d-tx: #12303a;
+  --d-mu: #5d7480;
+  --d-gr: #0f9d58;
+  --d-gr2: #0b7d46;
+  --d-tl: #14a39a;
+  --d-side: rgba(255, 255, 255, 0.6);
+
+  position: relative;
+  color: var(--d-tx);
+  font-family: var(--font-sans);
+  font-size: 14px;
+  min-height: 100%;
+  isolation: isolate;
+}
+
+.root *,
+.root *::before,
+.root *::after {
+  box-sizing: border-box;
+}
+
+/* Botanical / sky / peach ambience — the reference page background. */
+/* .app {
+  position: relative;
+  min-height: calc(100vh - 96px);
+  padding: 4px;
+  border-radius: 20px;
+  background:
+    radial-gradient(700px 500px at 0% 0%, rgba(211, 241, 234, 0.75), transparent 62%),
+    radial-gradient(800px 560px at 100% 5%, rgba(219, 232, 251, 0.7), transparent 62%),
+    radial-gradient(700px 520px at 100% 100%, rgba(246, 233, 222, 0.7), transparent 62%);
+  background-attachment: fixed;
+} */
+
+
+.app {
+  background:
+    radial-gradient(
+      700px 500px at 0% 0%,
+      rgba(211, 241, 234, 0.24),
+      transparent 62%
+    ),
+    radial-gradient(
+      800px 560px at 100% 5%,
+      rgba(219, 232, 251, 0.22),
+      transparent 62%
+    ),
+    radial-gradient(
+      700px 520px at 100% 100%,
+      rgba(246, 233, 222, 0.18),
+      transparent 62%
+    );
+}
+
+
+.main {
+  display: grid;
+  gap: 16px;
+  min-width: 0;
+}
+
+/* ---------- Glass primitive ---------- */
+.glass {
+  position: relative;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.78),
+    rgba(255, 255, 255, 0.36)
+  );
+  border: 1px solid rgba(255, 255, 255, 0.95);
+  border-radius: 24px;
+  box-shadow:
+    0 10px 30px rgba(20, 150, 140, 0.14),
+    inset 0 1px 0 #fff,
+    inset 0 -24px 40px rgba(110, 225, 210, 0.1);
+  -webkit-backdrop-filter: blur(18px) saturate(1.6);
+  backdrop-filter: blur(18px) saturate(1.6);
+}
+
+/* ---------- Buttons ---------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 10px 20px;
+  border: 0;
+  border-radius: 999px;
+  background: linear-gradient(135deg, var(--d-tl), var(--d-gr));
+  color: #fff;
+  font: inherit;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  box-shadow: 0 6px 14px rgba(15, 157, 88, 0.3);
+  transition:
+    transform 0.2s var(--ease-out),
+    box-shadow 0.2s var(--ease-out),
+    background 0.2s var(--ease-out);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .btn:hover {
+    transform: translateY(-1px);
+    background: linear-gradient(135deg, #11968f, var(--d-gr2));
+    box-shadow: 0 12px 22px rgba(15, 157, 88, 0.36);
+  }
+}
+
+.link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 16px;
+  border: 1px solid var(--d-bd);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.7);
+  color: #0b6e7a;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  transition:
+    background 0.2s var(--ease-out),
+    gap 0.2s var(--ease-out);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .link:hover {
+    background: #fff;
+    gap: 10px;
+  }
+}
+
+/* ---------- Decorative botanical leaves ---------- */
+.leaf {
+  position: absolute;
+  z-index: -1;
+  aspect-ratio: 1;
+  height: auto;
+  pointer-events: none;
+  opacity: 0.5;
+  filter: drop-shadow(0 4px 6px rgba(20, 120, 80, 0.18));
+}
+
+/* ============================================================
+   1. HERO
+   ============================================================ */
+.hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+  gap: 24px;
+  align-items: center;
+  padding: 34px 38px;
+  min-height: 260px;
+  overflow: hidden;
+  position: relative;
+  isolation: isolate;
+  border-radius: 24px;
+  /* Translucent mint/aqua/sky surface (replaces the old white-dominated glass
+     so the hero reads as luminous rather than grey). A light left wash keeps the
+     copy readable without washing out the atmosphere behind it. */
+  background:
+    linear-gradient(105deg, rgba(255, 255, 255, 0.10) 10%, rgba(255, 255, 255, 0) 58%),
+    radial-gradient(circle at 78% 45%, rgba(127, 230, 207, 0.26), transparent 55%),
+    radial-gradient(circle at 95% 90%, rgba(255, 217, 196, 0.22), transparent 40%),
+    linear-gradient(
+      125deg,
+      rgba(198, 243, 230, 0.36),
+      rgba(190, 228, 247, 0.28) 55%,
+      rgba(222, 218, 249, 0.22)
+    );
+  -webkit-backdrop-filter: blur(18px) saturate(1.45);
+  backdrop-filter: blur(18px) saturate(1.45);
+}
+
+/* Ambient skin-layer background video. It sits above the hero's surface and
+   below the copy, bust and decorative leaves. */
+.heroBg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  border-radius: inherit;
+  pointer-events: none;
+}
+
+.heroBgVideo {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  opacity: 0.82;
+  filter: saturate(1.12) contrast(1.02);
+}
+
+
+.hero > .leaf {
+  z-index: 2;
+  opacity: 0.62;
+}
+
+.hero > .glow,
+.hero > .bk {
+  z-index: 1;
+}
+
+.heroBgWash {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    105deg,
+    rgba(221, 248, 241, 0.18) 6%,
+    rgba(218, 241, 250, 0.11) 44%,
+    rgba(231, 225, 250, 0.04) 100%
+  );
+}
+
+.glow {
+  position: absolute;
+  right: 210px;
+  top: 20px;
+  width: 210px;
+  height: 210px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.9), transparent 70%);
+  pointer-events: none;
+}
+
+.bk {
+  position: absolute;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.1));
+  pointer-events: none;
+}
+
+.heroCopy {
+  position: relative;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  min-width: 0;
+}
+
+.heroGreeting {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 12px;
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.82);
+  color: #0b6e7a;
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+.heroTitle {
+  margin: 12px 0 10px;
+  font-size: clamp(1.6rem, 3.2vw, 2.05rem);
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  color: #0e2f38;
+  max-width: 20ch;
+}
+
+.heroSub {
+  margin: 0 0 8px;
+  font-size: 1.02rem;
+  font-weight: 700;
+  line-height: 1.35;
+  color: #14505c;
+  max-width: 30ch;
+}
+
+.heroBody {
+  margin: 0 0 18px;
+  max-width: 44ch;
+  color: var(--d-mu);
+  font-size: 13.5px;
+  line-height: 1.55;
+}
+
+.heroBtn {
+  background: var(--d-gr2);
+}
+
+/* Right-hand medical visual — existing bust video, circular medallion. */
+.heroVisual {
+  position: relative;
+  z-index: 3;
+  display: grid;
+  place-items: center;
+  min-width: 0;
+}
+
+.heroBust {
+  width: min(100%, 340px);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 2px solid rgba(255, 255, 255, 0.85);
+  box-shadow:
+    0 22px 60px -18px rgba(15, 118, 130, 0.45),
+    inset 0 0 40px rgba(255, 255, 255, 0.6);
+  flex: none;
+}
+
+.bustFigure {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+/* ============================================================
+   2. FOUR MULTICOLOUR HEALTHCARE CARDS
+   ============================================================ */
+.cards4 {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.fc {
+  --c: #1f78d1;
+  --t: #dcecfb;
+
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-height: 156px;
+  padding: 20px 20px 18px;
+  border: 1px solid #fff;
+  border-radius: 18px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(255, 255, 255, 0.62));
+  box-shadow: 0 6px 20px rgba(30, 100, 120, 0.1);
+  color: var(--d-tx);
+  text-decoration: none;
+  transition:
+    transform 0.2s var(--ease-out),
+    box-shadow 0.2s var(--ease-out);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .fc:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 28px rgba(30, 100, 120, 0.16);
+  }
+}
+
+.fc .ic {
+  display: grid;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  margin-bottom: 18px;
+  border-radius: 14px;
+  background: var(--t);
+  color: var(--c);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.06), inset 0 2px 4px rgba(255, 255, 255, 0.6);
+  transition: background 0.2s var(--ease-out), color 0.2s var(--ease-out);
+}
+
+.fc .ic svg {
+  width: 24px;
+  height: 24px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.7;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.fc b {
+  display: block;
+  margin-bottom: 4px;
+  font-size: 15.5px;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.fc small {
+  display: block;
+  max-width: 15ch;
+  color: var(--d-mu);
+  font-size: 13px;
+  line-height: 1.45;
+  text-decoration: none;
+}
+
+.fc .go {
+  position: absolute;
+  right: 16px;
+  bottom: 16px;
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--t);
+  color: var(--c);
+  font-size: 15px;
+  transition:
+    background 0.2s var(--ease-out),
+    color 0.2s var(--ease-out);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .fc:hover .go {
+    background: var(--c);
+    color: #fff;
+  }
+}
+
+.f1 {
+  --c: #1f78d1;
+  --t: #dcecfb;
+}
+
+.f2 {
+  --c: #16996a;
+  --t: #d9f2e6;
+}
+
+.f3 {
+  --c: #6d4fd0;
+  --t: #e8e1fa;
+}
+
+.f4 {
+  --c: #e0731a;
+  --t: #fde8d6;
+}
+
+/* ============================================================
+   Shared row / card headings
+   ============================================================ */
+.row {
+  display: grid;
+  gap: 16px;
+}
+
+.r1,
+.r2 {
+  grid-template-columns: minmax(0, 1.8fr) minmax(0, 1fr);
+}
+
+.r3 {
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+}
+
+.r4 {
+  grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+}
+
+.pad {
+  /* Clips the absolutely-positioned decorative leaves so they can never
+     push a card past the viewport edge (caused a 5px horizontal scroll). */
+  overflow: hidden;
+  padding: 20px;
+}
+
+.ovH {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 14px;
+}
+
+.ovTitle,
+.padTitle {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.ovMeta {
+  color: var(--d-mu);
+  font-size: 12px;
+}
+
+/* ============================================================
+   Health overview tiles
+   ============================================================ */
+.tiles {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.tile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 14px 6px;
+  border: 1px solid var(--d-bd);
+  border-radius: 16px;
+  background: linear-gradient(180deg, #fff, rgba(255, 255, 255, 0.6));
+  text-align: center;
+}
+
+.ti {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  margin: 0 auto 8px;
+  border-radius: 12px;
+}
+
+.ti svg {
+  width: 21px;
+  height: 21px;
+}
+
+.t1 .ti {
+  background: #dcecfb;
+  color: #1f78d1;
+}
+
+.t2 .ti {
+  background: #d9f2e6;
+  color: #16996a;
+}
+
+.t3 .ti {
+  background: #e8e1fa;
+  color: #6d4fd0;
+}
+
+.t4 .ti {
+  background: #fde8d6;
+  color: #e0731a;
+}
+
+.tile small {
+  display: block;
+  margin: 4px 0 2px;
+  color: var(--d-tx);
+  font-size: 12px;
+  line-height: 1.3;
+}
+
+.tile b {
+  display: block;
+  font-size: 17px;
+  line-height: 1.25;
+}
+
+.tile em {
+  font-style: normal;
+  font-size: 11.5px;
+  font-weight: 600;
+  color: var(--d-gr);
+}
+
+/* AI insights panel */
+.ai {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(160deg, rgba(255, 255, 255, 0.8), rgba(170, 238, 190, 0.45));
+}
+
+.aiBody {
+  margin: 8px 0 14px;
+  font-size: 14px;
+  line-height: 1.55;
+  color: #1c4a52;
+}
+
+/* ============================================================
+   Recent skin analysis
+   ============================================================ */
+.an {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.anImg {
+  width: 130px;
+  height: 130px;
+  flex: none;
+  border-radius: 14px;
+  border: 1px solid var(--d-bd);
+  object-fit: cover;
+  box-shadow: 0 6px 16px rgba(30, 100, 120, 0.14);
+}
+
+.ok {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--d-gr);
+  font-size: 13.5px;
+  font-weight: 700;
+}
+
+.anLine {
+  margin: 6px 0;
+  font-size: 13.5px;
+  line-height: 1.45;
+}
+
+.anTime {
+  color: var(--d-mu);
+  font-size: 12px;
+}
+
+.anEmpty,
+.emptyRow {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 14px;
+  border: 1px dashed rgba(11, 110, 122, 0.28);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.5);
+  color: var(--d-mu);
+}
+
+.anEmpty > svg,
+.emptyRow > svg {
+  flex: none;
+  color: #9ca3af;
+}
+
+.anEmptyTitle,
+.emptyRowTitle {
+  display: block;
+  color: var(--d-tx);
+  font-size: 14px;
+  font-weight: 700;
+  margin-bottom: 2px;
+}
+
+.anEmptyBody,
+.emptyRowBody {
+  margin: 0 0 10px;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+/* ============================================================
+   Health status
+   ============================================================ */
+.hs {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 12px;
+}
+
+.hsRing {
+  --p: 0;
+  display: grid;
+  place-items: center;
+  width: 92px;
+  height: 92px;
+  flex: none;
+  border-radius: 50%;
+  background: conic-gradient(rgba(20, 163, 154, 0.18) calc(var(--p) * 1%), rgba(20, 163, 154, 0.1) 0);
+}
+
+.hsRing span {
+  display: grid;
+  place-items: center;
+  width: 74px;
+  height: 74px;
+  border-radius: 50%;
+  background: var(--color-bg-canvas, #f1f7f8);
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--d-tl);
+}
+
+.hsValue {
+  display: block;
+  font-size: 17px;
+  line-height: 1.3;
+}
+
+.hsLabel {
+  display: block;
+  margin-top: 2px;
+  color: var(--d-mu);
+  font-size: 12.5px;
+  line-height: 1.4;
+}
+
+.chk {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 8px;
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+.chk::before {
+  content: "✓";
+  display: grid;
+  place-items: center;
+  width: 18px;
+  height: 18px;
+  flex: none;
+  border-radius: 50%;
+  background: var(--d-gr);
+  color: #fff;
+  font-size: 11px;
+}
+
+.hsNote {
+  margin: 14px 0 0;
+  color: var(--d-mu);
+  font-size: 12px;
+  line-height: 1.55;
+}
+
+/* ============================================================
+   Ayurveda panel
+   ============================================================ */
+.ay {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.8), rgba(175, 232, 150, 0.55));
+}
+
+.ayQuote {
+  display: block;
+  max-width: 30ch;
+  margin: 8px 0 6px;
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 1.5;
+  quotes: "“" "”";
+}
+
+/* The lotus scene renders with minHeight 400px internally. The frame must be
+   at least that tall or the bloom is clipped to a letterbox strip. */
+.ayVisual {
+  width: 100%;
+  max-width: none;
+  height: 400px;
+  min-height: 400px;
+  margin: 0 auto 12px;
+  border-radius: 16px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.45);
+  border: 1px solid var(--d-bd);
+}
+
+.lotusCanvas {
+  width: 100%;
+  height: 100%;
+  min-height: 400px;
+  display: block;
+}
+
+/* ============================================================
+   Recent activity
+   ============================================================ */
+.act {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 8px 0;
+}
+
+.actDot {
+  display: grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  flex: none;
+  border-radius: 50%;
+  color: #fff;
+  font-size: 13px;
+}
+
+.actLabel {
+  flex: 1;
+  min-width: 0;
+  font-size: 13.5px;
+}
+
+.actTime {
+  color: var(--d-mu);
+  font-size: 12px;
+  white-space: nowrap;
+}
+
+/* ============================================================
+   Wellness journey
+   ============================================================ */
+.jr {
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  min-height: 200px;
+  padding: 20px;
+  text-align: center;
+  color: #fff;
+  border-color: #fff;
+  background:
+    radial-gradient(ellipse at 50% 100%, rgba(255, 255, 255, 0.5), transparent 60%),
+    linear-gradient(180deg, #a8e6f2, #4fbfd8 55%, #2a95b8);
+}
+
+.jr > svg {
+  filter: drop-shadow(0 6px 10px rgba(230, 111, 176, 0.45));
+}
+
+.jrTitle {
+  font-size: 19px;
+  font-weight: 700;
+  line-height: 1.3;
+  color: #06323f;
+}
+
+.jrText {
+  font-size: 13.5px;
+  color: #0a4353;
+}
+
+.journey {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  width: 100%;
+  margin: 12px 0 14px;
+  padding: 0;
+  list-style: none;
+  font-size: 11.5px;
+  font-weight: 600;
+  text-align: center;
+  color: #06323f;
+}
+
+.journey::before {
+  content: "";
+  position: absolute;
+  left: 10%;
+  right: 10%;
+  top: 20px;
+  height: 3px;
+  background: rgba(255, 255, 255, 0.7);
+  z-index: 0;
+}
+
+.journeyItem {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  justify-items: center;
+  gap: 6px;
+  flex: 1;
+}
+
+.journeyIcon {
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: 3px solid #fff;
+  background: linear-gradient(135deg, var(--d-tl), #6b8cf0);
+  color: #fff;
+}
+
+.jrBtn {
+  background: rgba(255, 255, 255, 0.92);
+  color: #0b6e7a;
+  box-shadow: 0 6px 14px rgba(6, 50, 63, 0.18);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .jrBtn:hover {
+    background: #fff;
+    box-shadow: 0 10px 20px rgba(6, 50, 63, 0.22);
+  }
+}
+
+/* ============================================================
+   Footer
+   ============================================================ */
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+  padding: 16px 20px;
+  color: var(--d-mu);
+  font-size: 12px;
+}
+
+.footerLeft,
+.footerLinks {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.footerBrand {
+  color: var(--d-tx);
+  font-weight: 700;
+}
+
+.footerDot {
+  color: rgba(23, 59, 85, 0.25);
+}
+
+.footerLink {
+  color: var(--d-tx);
+  font-weight: 500;
+  text-decoration: none;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .footerLink:hover {
+    color: #0b6e7a;
+    text-decoration: underline;
+  }
+}
+
+/* ============================================================
+   Responsive — 1100 / 860 / 640
+   ============================================================ */
+@media (max-width: 1100px) {
+  .cards4 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .r1,
+  .r2,
+  .r3,
+  .r4 {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 860px) {
+  .hero {
+    grid-template-columns: minmax(0, 1fr);
+    text-align: center;
+    padding: 26px 22px;
+  }
+
+  .heroCopy {
+    align-items: center;
+  }
+
+  .heroTitle,
+  .heroSub,
+  .heroBody {
+    max-width: 100%;
+  }
+
+  .heroBust {
+    width: min(70vw, 260px);
+  }
+
+  .glow,
+  .bk {
+    display: none;
+  }
+
+  .tiles {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .app {
+    padding: 0;
+    border-radius: 0;
+  }
+
+  .cards4 {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .an {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .anImg {
+    width: 100%;
+    height: 180px;
+  }
+
+  .footer {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btn,
+  .link,
+  .fc,
+  .fc .go {
+    transition: none;
+  }
+
+  .btn:hover,
+  .fc:hover {
+    transform: none;
+  }
+}

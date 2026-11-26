@@ -1,0 +1,154 @@
+/* ============================================================
+   NeuButton — Clinical Tactile Button CSS Module
+   Precision Healthcare Aesthetic (Emil Kowalski feedback curves)
+   ============================================================ */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-family: inherit;
+  font-weight: 600;
+  border-radius: var(--radius-pill);
+  border: 1px solid transparent;
+  cursor: pointer;
+  outline: none;
+  transition: var(--transition-tactile);
+  white-space: nowrap;
+  user-select: none;
+  text-decoration: none;
+  box-sizing: border-box;
+}
+
+.btn:focus-visible {
+  outline: 2px solid var(--border-focus);
+  outline-offset: 2px;
+}
+
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* Sizes */
+.sizeSm {
+  padding: 7px 15px;
+  font-size: 0.82rem;
+  letter-spacing: -0.01em;
+}
+
+.sizeMd {
+  padding: 10px 20px;
+  font-size: 0.92rem;
+  letter-spacing: -0.01em;
+}
+
+.sizeLg {
+  padding: 13px 26px;
+  font-size: 1.02rem;
+  letter-spacing: -0.015em;
+}
+
+/* Variants */
+.variantPrimary {
+  background: var(--gradient-primary);
+  color: #ffffff;
+  border-color: rgba(13, 148, 136, 0.2);
+  box-shadow: 0 4px 14px -2px rgba(13, 148, 136, 0.35);
+}
+
+.variantPrimary:hover {
+  background: var(--gradient-primary-hover);
+  box-shadow: 0 6px 18px -2px rgba(13, 148, 136, 0.45);
+}
+
+.variantSecondary {
+  background: var(--color-bg-surface);
+  color: var(--color-text-primary);
+  border: 1px solid var(--border-subtle);
+  box-shadow: var(--shadow-neu-raised-sm);
+}
+
+.variantSecondary:hover {
+  background: var(--color-bg-subtle);
+  border-color: rgba(15, 23, 42, 0.18);
+  box-shadow: var(--shadow-neu-raised);
+}
+
+.variantSecondary:active {
+  background: var(--color-bg-recessed);
+  box-shadow: var(--shadow-neu-pressed-sm);
+}
+
+.variantGhost {
+  background: transparent;
+  color: var(--color-text-secondary);
+  border-color: transparent;
+}
+
+.variantGhost:hover {
+  background: var(--color-bg-subtle);
+  color: var(--color-text-primary);
+}
+
+.variantPressed {
+  background: var(--color-bg-recessed);
+  color: var(--color-primary);
+  border-color: var(--border-hairline);
+  box-shadow: var(--shadow-neu-pressed-sm);
+}
+
+.variantDanger {
+  background: #dc2626;
+  color: #ffffff;
+  border-color: rgba(220, 38, 38, 0.2);
+  box-shadow: 0 4px 14px -2px rgba(220, 38, 38, 0.35);
+}
+
+.variantDanger:hover {
+  background: #b91c1c;
+  box-shadow: 0 6px 18px -2px rgba(220, 38, 38, 0.45);
+}
+
+.variantPurple {
+  background: var(--gradient-purple);
+  color: #ffffff;
+  border-color: rgba(124, 58, 237, 0.2);
+  box-shadow: 0 4px 14px -2px rgba(124, 58, 237, 0.35);
+}
+
+.variantPurple:hover {
+  box-shadow: 0 6px 18px -2px rgba(124, 58, 237, 0.45);
+}
+
+.iconWrap {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+/* Spinner */
+.spinner {
+  width: 15px;
+  height: 15px;
+  border: 2px solid rgba(255, 255, 255, 0.35);
+  border-top-color: #ffffff;
+  border-radius: 50%;
+  animation: spin 0.75s linear infinite;
+  display: inline-block;
+  flex-shrink: 0;
+}
+
+.spinnerDark {
+  border-color: rgba(13, 148, 136, 0.2);
+  border-top-color: var(--color-primary);
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

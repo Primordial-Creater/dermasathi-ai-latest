@@ -1,0 +1,106 @@
+================================================================================
+DERMASATHI AI — FRONTEND AUDIT, WORK COMPLETED & DETAILED EXECUTION ROADMAP
+================================================================================
+Updated on: 2026-11-02
+Location: c:\Users\Arpit Sharma\OneDrive\Documents\frontend design\dermasathi frontend design
+
+--------------------------------------------------------------------------------
+CHECKPOINTS & ROLLBACK INSTRUCTIONS
+--------------------------------------------------------------------------------
+We have established dual safety checkpoints that you can roll back to at any time:
+
+1. GIT TAG CHECKPOINTS:
+   - Initial Baseline Tag: `checkpoint-working-baseline` (Commit: a2384e4)
+     Command to roll back to initial state:
+     `git reset --hard checkpoint-working-baseline`
+
+   - Common Components & State Integration Tag: `checkpoint-common-components-and-state` (Commit: 7c56e03)
+     Command to roll back to this milestone:
+     `git reset --hard checkpoint-common-components-and-state`
+
+2. PHYSICAL BACKUP DIRECTORY SNAPSHOT:
+   - Full copy saved at: `..\dermasathi_backup_checkpoint\`
+
+--------------------------------------------------------------------------------
+PART 1: COMPREHENSIVE AUDIT OF WORK ACCOMPLISHED TILL NOW
+--------------------------------------------------------------------------------
+
+1. ARCHITECTURAL DECISIONS & AESTHETIC PIVOT
+   - Target Design System: Vibrant Neumorphic ("Soft UI") with multi-layered 
+     tactile box-shadows (--shadow-neu-raised, --shadow-neu-pressed, --shadow-glow-blue).
+   - Global Canvas: Configured off-white/cool-canvas (#E8ECF2 / #F0F4F8) so dual-layer
+     extrusion highlights (#FFFFFF top-left) and shadows (#A6B4C8 bottom-right) pop.
+   - Border Radii: Strict 24px-32px for cards, 9999px (pill) for buttons, badges, chips.
+   - Medical 3D Identity: Replaced spinning generic earth globe with a custom
+     tactile 3D Epidermal Scanner scene (React Three Fiber + Drei) and an elegant CSS 
+     radial-pulse fallback for systems lacking WebGL.
+   - Dual-Mode Architecture: Complete Demo Mode vs. Real API Mode toggle with honest
+     unavailable fallbacks (never fabricates fake AI clinical diagnoses in Real Mode).
+
+2. CORE SCAFFOLD & DESIGN SYSTEM ASSETS
+   - package.json: React 18, Vite, TypeScript, React Router v6, Lucide React, Framer Motion, 
+     Three.js, @react-three/fiber, @react-three/drei.
+   - src/styles/tokens.css: Master Neumorphic token palette (gradients, dual-layer shadows, 
+     pressed recess shadows, semantic triage colors, font stacks).
+   - src/styles/global.css: Resets, tactile custom scrollbars, accessibility focus rings.
+   - src/context/AppModeContext.tsx: Global state for Demo vs. Real Mode, active locale, 
+     and dictionary translation helper t().
+   - src/locales/: en.json, hi.json (Hindi), mr.json (Marathi) — all updated with 100% key parity!
+   - src/layouts/AppLayout.tsx + AppLayout.module.css: Floating pill header with 
+     active backend health-check ping (/api/v1/skin/status), mode badges, language selector,
+     mobile 360px bottom dock, and real-time Toast alerts.
+
+3. REUSABLE COMMON COMPONENT LIBRARY (COMPLETED IN CURRENT SESSION)
+   - src/components/common/NeuCard.tsx + NeuCard.module.css:
+     * Extruded variants: raised, raised-sm, raised-lg, pressed, pressed-sm, glow
+     * Pill and card radius presets, tactile hover states
+   - src/components/common/NeuButton.tsx + NeuButton.module.css:
+     * Primary gradient, secondary raised, pressed recess, danger, purple
+     * Built-in spinner, micro-animations (whileHover, whileTap), icon slots
+   - src/components/common/Badge.tsx + Badge.module.css:
+     * Clinical status tones: blue, purple, green, amber, red, neutral, recessed
+   - src/components/common/MetricRecess.tsx + MetricRecess.module.css:
+     * Inset recessed neumorphic metric well with animated progress fill
+   - src/components/common/index.ts: Barrel exports for clean imports
+
+4. INTER-PAGE CLINICAL STATE & NOTIFICATION SYSTEM (COMPLETED IN CURRENT SESSION)
+   - src/context/ToastContext.tsx + Toast.module.css:
+     * Floating tactile Neumorphic pill toast notification system (useToast hook)
+     * Success, error, info, warning alerts with automatic dismiss & manual close
+     * Responsive bottom dock clearance
+   - src/context/ClinicalContext.tsx:
+     * Cross-page session store for latest skin scan results, image preview, and symptoms anamnesis
+     * Direct connection between SkinAssessmentPage -> VisitSummaryPage
+   - SkinAssessmentPage.tsx:
+     * Persists scan results into ClinicalContext on run
+     * CTA button: "Prepare Doctor Consultation Dossier" -> routes to /visit-summary
+     * Live toast alerts on upload, completion, and reset
+   - VisitSummaryPage.tsx:
+     * Dynamically pulls the live patient scan, confidence, and preview image
+     * Displays actual differential candidate findings distribution
+     * Toast confirmation when exporting or printing
+   - ReportsPage.tsx:
+     * 1-click "Add to Reminders" action directly updates localStorage medication schedule
+     * Prevents duplicate entries with toast feedback
+   - SymptomsPage.tsx:
+     * Dynamic user messaging with interactive bot responses
+     * Stores symptoms anamnesis into ClinicalContext for the doctor dossier
+   - SettingsPage.tsx:
+     * Reactive toasts on mode toggle (Demo vs. Real) and language switch
+
+--------------------------------------------------------------------------------
+PART 2: REMAINING WORK FOR FUTURE ITERATIONS
+--------------------------------------------------------------------------------
+
+1. CONTAINERIZED DOCKER / BUILD VERIFICATION
+   - Run `docker compose run --rm dermasathi-frontend npm run build` (or `docker compose build`)
+     to verify exit code 0 when testing the complete production bundle in the container.
+
+2. ADVANCED REPORT OCR FILE UPLOADER
+   - In Demo mode, allow users to drop their own sample PDF/images to see OCR scanning 
+     animation before displaying the extracted medications.
+
+3. ACCESSIBILITY & CONTRAST PASS
+   - Final audit on subtle neumorphic contrast ratios in high-ambient light settings.
+   - Keyboard tab index testing through all interactive pill buttons.
+================================================================================

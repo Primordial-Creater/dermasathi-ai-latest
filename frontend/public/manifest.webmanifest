@@ -1,0 +1,32 @@
+{
+  "id": "/",
+  "name": "DermaSathiAI — Smart Skin & Health Guidance",
+  "short_name": "DermaSathiAI",
+  "description": "Multilingual skin health guidance and healthcare companion.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#eef8f5",
+  "theme_color": "#0d9488",
+  "icons": [
+    {
+      "src": "/assets/pwa-icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/assets/pwa-icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/assets/pwa-icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}

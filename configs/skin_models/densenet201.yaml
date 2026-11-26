@@ -1,0 +1,17 @@
+# DenseNet201 — Model-Specific Configuration
+# Inherits from base_config.yaml
+
+model:
+  name: "densenet201"
+  architecture: "DenseNet201"
+  image_size: 224
+  input_shape: [224, 224, 3]
+  unfreeze_from: "conv5_block1_0_bn"
+  pretrained_weights: "imagenet"
+
+training:
+  batch_size: 32
+  epochs_head: 10
+  epochs_finetune: 20
+  learning_rate: 0.001
+  finetune_learning_rate: 0.00001

@@ -1,0 +1,104 @@
+/* ============================================================
+   AuthLayout.module.css — Luminous Bio-Interface Auth Shell
+   Separate layout for authentication pages without sidebar/header
+   ============================================================ */
+
+.authShell {
+  min-height: 100vh;
+  width: 100%;
+  background: var(--color-bg-canvas);
+  background-image: var(--gradient-glow);
+  background-attachment: fixed;
+  position: relative;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .authShell {
+    background-attachment: scroll;
+  }
+}
+
+.authBackground {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.gradientOrb1 {
+  position: absolute;
+  top: -20%;
+  left: -15%;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle at 30% 30%, var(--feat-ayurveda-bg-start) 0%, transparent 60%);
+  border-radius: 50%;
+  opacity: 0.4;
+  animation: floatSlow 12s ease-in-out infinite;
+}
+
+.gradientOrb2 {
+  position: absolute;
+  bottom: -20%;
+  right: -15%;
+  width: 450px;
+  height: 450px;
+  background: radial-gradient(circle at 70% 70%, var(--feat-symptoms-bg-start) 0%, transparent 60%);
+  border-radius: 50%;
+  opacity: 0.35;
+  animation: floatSlow 15s ease-in-out infinite reverse;
+}
+
+.gradientOrb3 {
+  position: absolute;
+  top: 30%;
+  right: 10%;
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle at 50% 50%, var(--feat-medicine-bg-start) 0%, transparent 50%);
+  border-radius: 50%;
+  opacity: 0.25;
+  animation: floatSlow 10s ease-in-out infinite;
+}
+
+@keyframes floatSlow {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(20px, -15px) scale(1.05); }
+  66% { transform: translate(-15px, 20px) scale(0.98); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gradientOrb1,
+  .gradientOrb2,
+  .gradientOrb3 {
+    animation: none;
+  }
+}
+
+.authMain {
+  position: relative;
+  z-index: 10;
+  min-height: 100vh;
+  min-height: 100svh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-8) var(--space-4) var(--space-10);
+  box-sizing: border-box;
+}
+
+@media (max-width: 768px) {
+  .authMain {
+    padding: var(--space-6) var(--space-3) var(--space-8);
+  }
+}
+
+@media (max-height: 760px) {
+  .authMain {
+    align-items: flex-start;
+    padding-top: 24px;
+    padding-bottom: 24px;
+  }
+}

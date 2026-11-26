@@ -1,0 +1,17 @@
+# InceptionV3 — Model-Specific Configuration
+# Inherits from base_config.yaml
+
+model:
+  name: "inception_v3"
+  architecture: "InceptionV3"
+  image_size: 299
+  input_shape: [299, 299, 3]
+  unfreeze_from: "mixed7"
+  pretrained_weights: "imagenet"
+
+training:
+  batch_size: 32
+  epochs_head: 10
+  epochs_finetune: 20
+  learning_rate: 0.001
+  finetune_learning_rate: 0.00001

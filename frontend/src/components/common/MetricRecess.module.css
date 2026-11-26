@@ -1,0 +1,58 @@
+/* ============================================================
+   MetricRecess — Clinical Metric Well CSS Module
+   ============================================================ */
+
+.recessWell {
+  background: var(--color-bg-subtle);
+  border: 1px solid var(--border-hairline);
+  box-shadow: var(--shadow-neu-pressed-sm);
+  border-radius: var(--radius-card-sm);
+  padding: 14px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.label {
+  font-size: 0.74rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--color-text-muted);
+}
+
+.valueRow {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.value {
+  font-size: 1.45rem;
+  font-weight: 700;
+  color: var(--color-text-primary);
+  line-height: 1.2;
+}
+
+.subtext {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--color-primary);
+}
+
+/* Progress bar inside well */
+.progressBarTrack {
+  width: 100%;
+  height: 6px;
+  background: rgba(15, 23, 42, 0.08);
+  border-radius: var(--radius-pill);
+  overflow: hidden;
+  margin-top: 6px;
+}
+
+.progressBarFill {
+  height: 100%;
+  background: var(--gradient-primary);
+  border-radius: var(--radius-pill);
+  transition: width 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+}

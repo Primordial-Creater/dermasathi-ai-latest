@@ -1,0 +1,1 @@
+"""DermaSathiAI API schemas."""

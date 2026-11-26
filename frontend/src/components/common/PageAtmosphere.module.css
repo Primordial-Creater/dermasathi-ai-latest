@@ -1,0 +1,40 @@
+/* Full-canvas atmospheric backdrop. Absolute layer inside the page root; the
+   negative gutter inset bleeds it through AppLayout's .contentCanvas padding so
+   the image reaches the edge of the shared canvas with no side strip. The blur
+   applies to this layer only — never to text or cards. A solid background-color
+   sits behind the image so the blur fade blends into an opaque colour instead of
+   turning transparent at the edge. */
+.atmosphere {
+  --pa-gutter: 16px;
+  position: absolute;
+  z-index: -2;
+  pointer-events: none;
+  top: calc(-1 * var(--pa-gutter));
+  right: calc(-1 * var(--pa-gutter));
+  bottom: 0;
+  left: calc(-1 * var(--pa-gutter));
+  background-color: #e8f3f6;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  filter: blur(14px) saturate(1.25);
+}
+
+/* Soft light veil keeps the photo calm and text readable without flattening it. */
+.atmosphere::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    160deg,
+    rgba(255, 255, 255, 0.1),
+    rgba(224, 242, 254, 0.1)
+  );
+}
+
+/* .contentCanvas pads the main content by 12px at <=640px; the bleed matches it. */
+@media (max-width: 640px) {
+  .atmosphere {
+    --pa-gutter: 12px;
+  }
+}
